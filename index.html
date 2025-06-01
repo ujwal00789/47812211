@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will you Marry Me , Ammusee</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+    }
+
+    /* Background Video Styling */
+    #bgVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://media.tenor.com/Kfjb1qU_HisAAAAi/love-bear-hearts.gif');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-top: 20vh;
+      color: #e60073;
+    }
+
+    .btn {
+      font-size: 20px;
+      padding: 10px 30px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      margin: 20px;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #98fb98;
+      color: black;
+    }
+
+    #noBtn {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    #message {
+      font-size: 1.4em;
+      color: #ff1493;
+      margin-top: 20px;
+      min-height: 2em;
+    }
+
+    #mainImage {
+      width: 200px;
+      margin-top: 30px;
+    }
+
+    #hugImage {
+      display: none;
+      width: 300px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="background" id="background" ></div>
+
+  <img id="mainImage" src="/1.png" alt="Bear asking">
+  <h1>Will you Marry me , Ammusee? 🐻💕</h1>
+  
+
+  <button class="btn" id="yesBtn">Yes</button>
+  <button class="btn" id="noBtn">No</button>
+
+  <div id="message"></div>
+  <img id="hugImage" src="/2.webp" alt="Hugging Bears" style="object-position: center">
+ 
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+    const mainImage = document.getElementById('mainImage');
+    const hugImage = document.getElementById('hugImage');
+
+    let noClicks = 0;
+    const maxNoClicks = 20;
+
+    const quotes = [
+      "Please say yes, it would make me so happy.",
+      "I promise it will be worth it.",
+      "You mean so much to me.",
+      "I really want this moment with you.",
+      "My heart is waiting for your yes.",
+      "I can't imagine this day without you.",
+      "I'm asking because you matter to me.",
+      "Saying yes will make us both smile.",
+      "You are special to me.",
+      "This comes straight from my heart.",
+      "I hope you will say yes soon.",
+      "I believe we are meant to share this.",
+      "Just one yes can mean everything.",
+      "I will make you feel loved every day.",
+      "I am here, hoping for your yes.",
+      "You saying yes would be the best gift",
+      "Good friends and teddy bears make life softer.",
+      "I will wait… but I would love your yes now.",
+      "Let us make this a beautiful memory",
+      "I would not give up that easily."
+    ];
+
+    yesBtn.addEventListener('click', () => {
+      message.textContent = "Awww Ammusee! That means so much to me! 🤗💖";
+      mainImage.style.display = "none";
+      hugImage.style.display = "block";
+    });
+
+    noBtn.addEventListener('click', () => {
+      if (noClicks < maxNoClicks) {
+        message.textContent = quotes[noClicks % quotes.length];
+        noClicks++;
+
+        yesBtn.style.fontSize = `${20 + noClicks * 2}px`;
+        yesBtn.style.padding = `${10 + noClicks}px ${30 + noClicks * 2}px`;
+        noBtn.style.fontSize = `${Math.max(10, 20 - noClicks * 0.8)}px`;
+        noBtn.style.padding = `${Math.max(4, 10 - noClicks * 0.5)}px ${Math.max(10, 30 - noClicks * 1.5)}px`;
+      } else {
+        message.textContent = "You can't say no anymore 😭";
+        noBtn.disabled = true;
+      }
+    });
+
+    // Floating bear hearts background
+    const bg = document.getElementById('background');
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      heart.style.opacity = Math.random();
+      bg.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>
